@@ -1,33 +1,12 @@
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export default function Home() {
   return (
     <>
-      {/* <header>
-        <nav aria-label="Primary">
-          <a href="/" aria-label="Audiophile home">
-            audiophile
-          </a>
-          <ul>
-            <li>
-              <a href="/">HOME</a>
-            </li>
-            <li>
-              <a href="/headphones">HEADPHONES</a>
-            </li>
-            <li>
-              <a href="/speakers">SPEAKERS</a>
-            </li>
-            <li>
-              <a href="/earphones">EARPHONES</a>
-            </li>
-          </ul>
-          <a href="/checkout" aria-label="Go to cart and checkout">
-            Cart
-          </a>
-        </nav>
-      </header>
-      <main>
+      <Header />
+      <div className="h-[200dvh]"></div>
+      {/* <main>
         <section aria-labelledby="home-hero-title">
           <div>
             <p>NEW PRODUCT</p>
@@ -118,7 +97,7 @@ export default function Home() {
           </div>
         </section>
       </main> */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
