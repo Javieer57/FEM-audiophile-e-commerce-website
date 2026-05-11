@@ -10,9 +10,9 @@ const headerNavLinks = [
 
 export function Header() {
   return (
-    <header className="bg-black text-white sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-black text-white">
       <div className="general-container">
-        <div className="grid grid-cols-[auto_1fr_auto] gap-5 md:gap-11 lg:grid-cols-[1fr_auto_1fr] items-center lg:gap-5 pt-9 pb-8">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 pt-9 pb-8 md:gap-11 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
           <div className="lg:hidden">
             <button
               aria-label="Open menu"
@@ -30,14 +30,14 @@ export function Header() {
 
           <nav
             aria-label="Primary navigation"
-            className="justify-self-center hidden lg:block"
+            className="hidden justify-self-center lg:block"
           >
-            <ul className="uppercase tracking-[0.125rem] text-sm flex gap-8">
+            <ul className="flex gap-8 text-sm tracking-[0.125rem] uppercase">
               {headerNavLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-bold transition-colors duration-300 hover:text-primary focus-visible:text-primary focus-visible:outline-none"
+                    className="hover:text-primary focus-visible:text-primary font-bold transition-colors duration-300 focus-visible:outline-none"
                   >
                     {link.label.toUpperCase()}
                   </Link>
