@@ -1,3 +1,4 @@
+import { AboutAudiophile } from "./AboutAudiophile";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -6,8 +7,8 @@ export default function Home() {
     <>
       <Header />
       <div className="h-[200dvh]"></div>
-      {/* <main>
-        <section aria-labelledby="home-hero-title">
+      <main className="pb-30 md:pb-24 lg:pb-50">
+        {/* <section aria-labelledby="home-hero-title">
           <div>
             <p>NEW PRODUCT</p>
             <h1 id="home-hero-title">XX99 MARK II HEADPHONES</h1>
@@ -20,8 +21,8 @@ export default function Home() {
           <div>
             <img src="#" alt="XX99 Mark II Headphones product" />
           </div>
-        </section>
-        <section aria-label="Shop by category">
+        </section> */}
+        {/* <section aria-label="Shop by category">
           <ul>
             <li>
               <img src="#" alt="Headphones" />
@@ -51,8 +52,8 @@ export default function Home() {
               </a>
             </li>
           </ul>
-        </section>
-        <section aria-labelledby="zx9-title">
+        </section> */}
+        {/* <section aria-labelledby="zx9-title">
           <article>
             <img src="#" alt="ZX9 Speaker product" />
             <div>
@@ -64,8 +65,8 @@ export default function Home() {
               <a href="/product/zx9-speaker">SEE PRODUCT</a>
             </div>
           </article>
-        </section>
-        <section aria-label="Featured products">
+        </section> */}
+        {/* <section aria-label="Featured products">
           <article>
             <img src="#" alt="ZX7 Speaker product" />
             <h3>ZX7 SPEAKER</h3>
@@ -76,27 +77,9 @@ export default function Home() {
             <h3>YX1 EARPHONES</h3>
             <a href="/product/yx1-earphones">SEE PRODUCT</a>
           </article>
-        </section>
-        <section aria-labelledby="about-title">
-          <div>
-            <h2 id="about-title">
-              BRINGING YOU THE <span>BEST</span> AUDIO GEAR
-            </h2>
-            <p>
-              Located at the heart of New York City, Audiophile is the premier
-              store for high end headphones, earphones, speakers, and audio
-              accessories. We have a large showroom and luxury demonstration
-              rooms available for you to browse and experience a wide range of
-              our products. Stop by our store to meet some of the fantastic
-              people who make Audiophile the best place to buy your portable
-              audio equipment.
-            </p>
-          </div>
-          <div>
-            <img src="#" alt="Person listening with Audiophile headphones" />
-          </div>
-        </section>
-      </main> */}
+        </section> */}
+        <AboutAudiophile />
+      </main>
       <Footer />
     </>
   );
