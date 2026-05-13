@@ -6,6 +6,7 @@
   --color-light-gray: #f1f1f1;
   --color-off-white: #fafafa;
   --color-accent: #fbaf85;
+  --color-medium-gray: #4c4c4c;
 }
 
 @utility general-container {

@@ -1,4 +1,5 @@
 import { AboutAudiophile } from "./AboutAudiophile";
+import { FeaturedProducts } from "./FeaturedProducts";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -53,31 +54,8 @@ export default function Home() {
             </li>
           </ul>
         </section> */}
-        {/* <section aria-labelledby="zx9-title">
-          <article>
-            <img src="#" alt="ZX9 Speaker product" />
-            <div>
-              <h2 id="zx9-title">ZX9 SPEAKER</h2>
-              <p>
-                Upgrade to premium speakers that are phenomenally built to
-                deliver truly remarkable sound.
-              </p>
-              <a href="/product/zx9-speaker">SEE PRODUCT</a>
-            </div>
-          </article>
-        </section> */}
-        {/* <section aria-label="Featured products">
-          <article>
-            <img src="#" alt="ZX7 Speaker product" />
-            <h3>ZX7 SPEAKER</h3>
-            <a href="/product/zx7-speaker">SEE PRODUCT</a>
-          </article>
-          <article>
-            <img src="#" alt="YX1 Earphones product" />
-            <h3>YX1 EARPHONES</h3>
-            <a href="/product/yx1-earphones">SEE PRODUCT</a>
-          </article>
-        </section> */}
+
+        <FeaturedProducts />
         <AboutAudiophile />
       </main>
       <Footer />
