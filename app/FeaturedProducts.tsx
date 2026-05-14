@@ -6,7 +6,7 @@ export function FeaturedProducts() {
   return (
     <section
       aria-labelledby="featured-products-title"
-      className="general-container grid gap-6 pt-30 pb-50 md:pt-24 lg:pt-42"
+      className="general-container grid gap-6"
     >
       <h2 id="featured-products-title" className="sr-only">
         Featured products

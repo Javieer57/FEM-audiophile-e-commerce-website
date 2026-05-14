@@ -1,64 +1,27 @@
 import { AboutAudiophile } from "./AboutAudiophile";
-import { SeeProductLink } from "./components/SeeProductLink";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { HeroSection } from "./HeroSection";
 import { ProductCategories } from "./ProductCategories";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main className="pb-30 md:pb-24 lg:pb-50">
-        <section
-          aria-labelledby="home-hero-title"
-          className="relative aspect-[1/1.6] bg-black pt-23.25 text-white md:aspect-[1/0.9493] lg:aspect-[1/0.50625]"
-        >
-          <div className="general-container relative z-10 grid h-full gap-7.5 lg:grid-cols-12">
-            <div className="col-start-1 space-y-10 self-center max-lg:text-center lg:col-end-6">
-              <div className="mx-auto grid gap-6 max-lg:max-w-96 lg:mx-0">
-                <p className="text-sm tracking-[0.625rem] uppercase opacity-50">
-                  NEW PRODUCT
-                </p>
-                <h1
-                  id="home-hero-title"
-                  className="text-4xl font-bold tracking-[0.075rem] md:text-[3.5rem] md:leading-14.5 md:tracking-[0.125rem]"
-                >
-                  XX99 MARK II HEADPHONES
-                </h1>
-                <p className="font-medium text-balance opacity-75 lg:max-w-none">
-                  Experience natural, lifelike audio and exceptional build
-                  quality made for the passionate music enthusiast.
-                </p>
-              </div>
-              <SeeProductLink
-                href="/product/xx99-mark-two-headphones"
-                variant="primary"
-                ariaLabel="See product: XX99 mark II headphones"
-              />
-            </div>
+      <main>
+        <HeroSection />
+        <div className="pt-10 pb-30 md:py-24 lg:pt-30 lg:pb-50">
+          <div className="mb-30 md:mb-24 lg:mb-42">
+            <ProductCategories />
           </div>
-
-          <picture>
-            <source
-              media="(min-width: 1024px)"
-              srcSet="/images/home/desktop/image-hero.jpg"
-            />
-            <source
-              media="(min-width: 768px)"
-              srcSet="/images/home/tablet/image-hero.jpg"
-            />
-            <img
-              src="/images/home/mobile/image-hero.jpg"
-              alt="XX99 Mark II Headphones product"
-              className="absolute inset-0 inline-block h-full w-full object-cover object-center"
-            />
-          </picture>
-        </section>
-        <ProductCategories />
-
-        <FeaturedProducts />
-        <AboutAudiophile />
+          <div className="mb-30 md:mb-24 lg:mb-50">
+            <FeaturedProducts />
+          </div>
+          <div>
+            <AboutAudiophile />
+          </div>
+        </div>
       </main>
       <Footer />
     </>
