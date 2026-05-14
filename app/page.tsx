@@ -2,6 +2,7 @@ import { AboutAudiophile } from "./AboutAudiophile";
 import { FeaturedProducts } from "./FeaturedProducts";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { ProductCategories } from "./ProductCategories";
 
 export default function Home() {
   return (
@@ -23,37 +24,7 @@ export default function Home() {
             <img src="#" alt="XX99 Mark II Headphones product" />
           </div>
         </section> */}
-        {/* <section aria-label="Shop by category">
-          <ul>
-            <li>
-              <img src="#" alt="Headphones" />
-              <h2>
-                <a href="/headphones">HEADPHONES</a>
-              </h2>
-              <a href="/headphones" aria-label="Shop headphones">
-                SHOP
-              </a>
-            </li>
-            <li>
-              <img src="#" alt="Speakers" />
-              <h2>
-                <a href="/speakers">SPEAKERS</a>
-              </h2>
-              <a href="/speakers" aria-label="Shop speakers">
-                SHOP
-              </a>
-            </li>
-            <li>
-              <img src="#" alt="Earphones" />
-              <h2>
-                <a href="/earphones">EARPHONES</a>
-              </h2>
-              <a href="/earphones" aria-label="Shop earphones">
-                SHOP
-              </a>
-            </li>
-          </ul>
-        </section> */}
+        <ProductCategories />
 
         <FeaturedProducts />
         <AboutAudiophile />
