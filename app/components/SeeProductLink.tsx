@@ -3,7 +3,7 @@ import Link from "next/link";
 type SeeProductLinkProps = {
   href: string;
   ariaLabel: string;
-  variant?: "dark" | "outline";
+  variant?: "dark" | "outline" | "primary";
 };
 
 const baseClassName =
@@ -11,6 +11,8 @@ const baseClassName =
 
 const variantClassNames = {
   dark: "border-black bg-black text-white hover:border-medium-gray hover:bg-medium-gray focus-visible:border-medium-gray focus-visible:bg-medium-gray",
+  primary:
+    "border-primary bg-primary text-white hover:bg-accent focus-visible:bg-accent",
   outline:
     "border-black text-black hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white",
 };

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CartIcon, HamburgerMenuIcon } from "./components/icons";
 
@@ -9,8 +12,33 @@ const headerNavLinks = [
 ];
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let throttleTimeout: NodeJS.Timeout | null = null;
+
+    const handleScroll = () => {
+      if (throttleTimeout) return;
+
+      throttleTimeout = setTimeout(() => {
+        setIsScrolled(window.scrollY > 0);
+        throttleTimeout = null;
+      }, 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (throttleTimeout) clearTimeout(throttleTimeout);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-black text-white">
+    <header
+      className={`fixed top-0 z-50 w-full text-white transition-colors duration-300 ${
+        isScrolled ? "bg-black" : "bg-transparent"
+      }`}
+    >
       <div className="general-container">
         <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 pt-9 pb-8 md:gap-11 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
           <div className="lg:hidden">
