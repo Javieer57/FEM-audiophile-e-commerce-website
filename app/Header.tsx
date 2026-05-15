@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CartIcon, HamburgerMenuIcon } from "./components/icons";
-import { CategoryCard } from "./components/CategoryCard";
+import { CartDialog, type CartProduct } from "./components/CartDialog";
 import { MobileMenuDialog } from "./components/MobileMenuDialog";
 import { categories } from "./components/categories";
 
@@ -14,9 +14,25 @@ const headerNavLinks = [
   { href: "/earphones", label: "Earphones" },
 ];
 
+const mockCartProducts: CartProduct[] = [
+  {
+    id: "xx99-mark-two-headphones",
+    name: "XX99 MK II",
+    unitPrice: 2999,
+    quantity: 1,
+  },
+  { id: "xx59-headphones", name: "XX59", unitPrice: 899, quantity: 2 },
+  { id: "yx1-earphones", name: "YX1", unitPrice: 599, quantity: 1 },
+];
+
+// const mockCartProducts: CartProduct[] = [];
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartProducts, setCartProducts] =
+    useState<CartProduct[]>(mockCartProducts);
 
   useEffect(() => {
     let throttleTimeout: NodeJS.Timeout | null = null;
@@ -37,22 +53,43 @@ export function Header() {
     };
   }, []);
 
+  const toggleMenu = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      return;
+    }
+
+    setIsCartOpen(false);
+    setIsMenuOpen(true);
+  };
+
+  const toggleCart = () => {
+    if (isCartOpen) {
+      setIsCartOpen(false);
+      return;
+    }
+
+    setIsMenuOpen(false);
+    setIsCartOpen(true);
+  };
+
   return (
     <>
       <header
         className={`fixed top-0 z-50 w-full text-white transition-colors duration-300 ${
-          isScrolled || isMenuOpen ? "bg-black" : "bg-transparent"
+          isScrolled || isMenuOpen || isCartOpen ? "bg-black" : "bg-transparent"
         }`}
       >
         <div className="general-container">
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 pt-9 pb-8 md:gap-11 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
             <div className="lg:hidden">
               <button
-                aria-label="Open menu"
+                type="button"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-nav"
                 className="flex items-center justify-center"
-                onClick={() => setIsMenuOpen(true)}
+                onClick={toggleMenu}
               >
                 <HamburgerMenuIcon />
               </button>
@@ -84,8 +121,12 @@ export function Header() {
 
             <div className="justify-self-end">
               <button
-                aria-label="View cart"
+                type="button"
+                aria-label={isCartOpen ? "Close cart" : "View cart"}
+                aria-expanded={isCartOpen}
+                aria-controls="cart-dialog"
                 className="flex items-center justify-center"
+                onClick={toggleCart}
               >
                 <CartIcon />
               </button>
@@ -101,6 +142,13 @@ export function Header() {
         open={isMenuOpen}
         onClose={setIsMenuOpen}
         categories={categories}
+      />
+
+      <CartDialog
+        open={isCartOpen}
+        onClose={setIsCartOpen}
+        products={cartProducts}
+        onRemoveAll={() => setCartProducts([])}
       />
     </>
   );
