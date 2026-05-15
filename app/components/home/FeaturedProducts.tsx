@@ -1,6 +1,6 @@
-import { FeaturedProductZX9 } from "@/app/components/FeaturedProductZX9";
-import { FeaturedProductZX7 } from "@/app/components/FeaturedProductZX7";
-import { FeaturedProductYX1 } from "@/app/components/FeaturedProductYX1";
+import { FeaturedProductZX9 } from "./FeaturedProductZX9";
+import { FeaturedProductZX7 } from "./FeaturedProductZX7";
+import { FeaturedProductYX1 } from "./FeaturedProductYX1";
 
 export function FeaturedProducts() {
   return (

@@ -1,4 +1,4 @@
-import { SeeProductLink } from "./components/SeeProductLink";
+import { SeeProductLink } from "../shared/SeeProductLink";
 
 export function HeroSection() {
   return (

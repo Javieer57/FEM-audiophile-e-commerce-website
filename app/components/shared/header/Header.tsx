@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { CartIcon, HamburgerMenuIcon } from "./components/icons";
-import { CartDialog, type CartProduct } from "./components/CartDialog";
-import { MobileMenuDialog } from "./components/MobileMenuDialog";
-import { categories } from "./components/categories";
+import { CartIcon, HamburgerMenuIcon } from "../../icons";
+import { CartDialog, type CartProduct } from "./CartDialog";
+import { MobileMenuDialog } from "./MobileMenuDialog";
+import { categories } from "../../categories";
 
 const headerNavLinks = [
   { href: "/", label: "Home" },

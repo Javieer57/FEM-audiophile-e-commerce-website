@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "./icons/ArrowRightIcon";
+import { ArrowRightIcon } from "../icons/ArrowRightIcon";
 
 type CategoryCardProps = {
   name: string;

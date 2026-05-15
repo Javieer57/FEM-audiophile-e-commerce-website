@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FacebookIcon, TwitterIcon, InstagramIcon } from "./components/icons";
+import { FacebookIcon, TwitterIcon, InstagramIcon } from "../../icons";
 
 const footerNavLinks = [
   { href: "/", label: "Home" },

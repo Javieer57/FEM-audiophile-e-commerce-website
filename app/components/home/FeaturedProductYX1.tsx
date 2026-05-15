@@ -1,4 +1,4 @@
-import { SeeProductLink } from "./SeeProductLink";
+import { SeeProductLink } from "../shared/SeeProductLink";
 
 export function FeaturedProductYX1() {
   return (

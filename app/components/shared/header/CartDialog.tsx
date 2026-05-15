@@ -5,7 +5,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../../utils/formatCurrency";
 import { CartItem } from "./CartItem";
 
 export type CartProduct = {

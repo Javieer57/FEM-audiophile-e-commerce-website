@@ -1,5 +1,5 @@
-import { CategoryCard } from "./components/CategoryCard";
-import { categories } from "./components/categories";
+import { CategoryCard } from "../shared/CategoryCard";
+import { categories } from "../categories";
 
 export function ProductCategories() {
   return (

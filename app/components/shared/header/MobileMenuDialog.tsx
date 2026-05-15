@@ -4,8 +4,8 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { CategoryCard } from "./CategoryCard";
-import type { Category } from "./categories";
+import { CategoryCard } from "../CategoryCard";
+import type { Category } from "../../categories";
 
 type MobileMenuDialogProps = {
   open: boolean;
