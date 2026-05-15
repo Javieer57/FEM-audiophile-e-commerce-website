@@ -6,8 +6,11 @@
   --color-light-gray: #f1f1f1;
   --color-off-white: #fafafa;
   --color-accent: #fbaf85;
-  --color-white: #ffffff;
-  --color-black: #000000;
+  --color-medium-gray: #4c4c4c;
+}
+
+@utility general-container {
+  @apply mx-auto max-w-298 px-6 md:px-10;
 }
 
 body {
