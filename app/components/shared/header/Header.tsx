@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { CartIcon, HamburgerMenuIcon } from "../../icons";
+import { CartIcon, HamburgerMenuIcon } from "@icons/index";
 import { CartDialog, type CartProduct } from "./CartDialog";
 import { MobileMenuDialog } from "./MobileMenuDialog";
 import { categories } from "../../categories";

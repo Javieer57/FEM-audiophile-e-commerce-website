@@ -1,4 +1,4 @@
-import { CartMinusIcon, CartPlusIcon } from "../../icons";
+import { CartMinusIcon, CartPlusIcon } from "@icons/index";
 
 type QuantityInputProps = {
   value: number;
