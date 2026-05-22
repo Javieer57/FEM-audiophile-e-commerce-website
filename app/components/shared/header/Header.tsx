@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartIcon, HamburgerMenuIcon } from "@icons/index";
@@ -39,6 +39,10 @@ export function Header() {
 
   const isOverlayOpen = isMenuOpen || isCartOpen;
   const isTransparentHeader = isHomePage && !isOverlayOpen;
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   const toggleMenu = () => {
     if (isMenuOpen) {
