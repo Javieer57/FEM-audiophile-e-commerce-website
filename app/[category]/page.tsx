@@ -26,7 +26,7 @@ export default async function Page({
     .reverse();
 
   return (
-    <>
+    <main>
       <section className="bg-black text-white" aria-labelledby="category-title">
         <div className="general-container">
           <h1
@@ -53,6 +53,6 @@ export default async function Page({
         <ProductCategories />
         <AboutAudiophile />
       </div>
-    </>
+    </main>
   );
 }
