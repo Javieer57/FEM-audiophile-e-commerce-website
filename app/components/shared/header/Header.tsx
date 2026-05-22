@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CartIcon, HamburgerMenuIcon } from "@icons/index";
 import { CartDialog, type CartProduct } from "./CartDialog";
 import { MobileMenuDialog } from "./MobileMenuDialog";
 import { categories } from "../../categories";
+import { cn } from "@utils/cn";
 
 const headerNavLinks = [
   { href: "/", label: "Home" },
@@ -28,30 +30,15 @@ const mockCartProducts: CartProduct[] = [
 // const mockCartProducts: CartProduct[] = [];
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartProducts, setCartProducts] =
     useState<CartProduct[]>(mockCartProducts);
 
-  useEffect(() => {
-    let throttleTimeout: NodeJS.Timeout | null = null;
-
-    const handleScroll = () => {
-      if (throttleTimeout) return;
-
-      throttleTimeout = setTimeout(() => {
-        setIsScrolled(window.scrollY > 0);
-        throttleTimeout = null;
-      }, 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (throttleTimeout) clearTimeout(throttleTimeout);
-    };
-  }, []);
+  const isOverlayOpen = isMenuOpen || isCartOpen;
+  const isTransparentHeader = isHomePage && !isOverlayOpen;
 
   const toggleMenu = () => {
     if (isMenuOpen) {
@@ -76,9 +63,11 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 z-50 w-full text-white transition-colors duration-300 ${
-          isScrolled || isMenuOpen || isCartOpen ? "bg-black" : "bg-transparent"
-        }`}
+        className={cn(
+          "w-full text-white transition-colors duration-300",
+          isTransparentHeader ? "bg-transparent" : "bg-black",
+          isHomePage && "absolute top-0 z-50",
+        )}
       >
         <div className="general-container">
           <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 pt-9 pb-8 md:gap-11 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">

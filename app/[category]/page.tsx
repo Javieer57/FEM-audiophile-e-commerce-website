@@ -27,10 +27,7 @@ export default async function Page({
 
   return (
     <>
-      <section
-        className="bg-black pt-23.25 text-white"
-        aria-labelledby="category-title"
-      >
+      <section className="bg-black text-white" aria-labelledby="category-title">
         <div className="general-container">
           <h1
             id="category-title"
