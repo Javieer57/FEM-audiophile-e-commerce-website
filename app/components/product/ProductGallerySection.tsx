@@ -28,7 +28,7 @@ export function ProductGallerySection({
               <img
                 src={productData.gallery.first.mobile}
                 alt=""
-                className="h-full w-full object-contain lg:object-cover"
+                className="bg-light-gray h-full w-full object-cover"
               />
             </picture>
           </div>
@@ -47,7 +47,7 @@ export function ProductGallerySection({
               <img
                 src={productData.gallery.second.mobile}
                 alt=""
-                className="h-full w-full object-contain lg:object-cover"
+                className="bg-light-gray h-full w-full object-cover"
               />
             </picture>
           </div>
@@ -66,7 +66,7 @@ export function ProductGallerySection({
               <img
                 src={productData.gallery.third.mobile}
                 alt=""
-                className="h-full w-full object-cover"
+                className="bg-light-gray h-full w-full object-cover"
               />
             </picture>
           </div>
