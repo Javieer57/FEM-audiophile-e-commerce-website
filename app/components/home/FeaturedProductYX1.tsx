@@ -2,7 +2,7 @@ import { SeeProductLink } from "../shared/SeeProductLink";
 
 export function FeaturedProductYX1() {
   return (
-    <article className="grid gap-6 md:grid-cols-2 md:gap-3">
+    <article className="grid gap-6 md:grid-cols-2 md:gap-3 lg:gap-7.5">
       <div className="bg-light-gray aspect-[1/0.6116] overflow-hidden rounded-lg md:aspect-[1/0.9439] lg:aspect-video">
         <picture>
           <source
