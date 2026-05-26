@@ -1,6 +1,7 @@
 import { formatCurrency } from "@utils/formatCurrency";
 import type { Products } from "@mytypes/products";
 import { GoBackButton } from "../shared/GoBackButton";
+import { ProductActions } from "./ProductActions";
 
 type ProductSummarySectionProps = {
   productData: Products;
@@ -10,7 +11,7 @@ export function ProductSummarySection({
   productData,
 }: ProductSummarySectionProps) {
   return (
-    <section aria-labelledby="product-title" className="general-container">
+    <section aria-labelledby="product-title">
       <div className="mb-6 lg:mb-14">
         <GoBackButton fallbackHref={`/${productData.category}`} />
       </div>
@@ -52,12 +53,16 @@ export function ProductSummarySection({
               {productData.name}
             </h1>
           </div>
+
           <p className="mb-6 leading-6.5 font-medium opacity-50 max-lg:text-balance lg:mb-8">
             {productData.description}
           </p>
-          <p className="text-lg font-bold tracking-[0.08125rem]">
+
+          <p className="mb-12 text-lg font-bold tracking-[0.08125rem]">
             {formatCurrency(productData.price)}
           </p>
+
+          <ProductActions />
         </div>
       </div>
     </section>

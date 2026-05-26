@@ -8,7 +8,7 @@ export function ProductFeaturesSection({
   productData,
 }: ProductFeaturesSectionProps) {
   return (
-    <section className="general-container grid gap-22 md:gap-30 lg:grid-cols-12 lg:gap-7.5">
+    <section className="grid gap-22 md:gap-30 lg:grid-cols-12 lg:gap-7.5">
       <section aria-labelledby="features-title" className="lg:col-span-7">
         <div className="grid gap-6 lg:gap-8">
           <h2
