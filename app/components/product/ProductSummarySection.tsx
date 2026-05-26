@@ -11,7 +11,7 @@ export function ProductSummarySection({
   productData,
 }: ProductSummarySectionProps) {
   return (
-    <section aria-labelledby="product-title" className="general-container">
+    <section aria-labelledby="product-title">
       <div className="mb-6 lg:mb-14">
         <GoBackButton fallbackHref={`/${productData.category}`} />
       </div>
