@@ -28,7 +28,7 @@
 }
 
 @utility form-input {
-  @apply border-gray rounded-lg border px-6 py-4.5 text-sm font-bold tracking-[-0.015625rem] text-black transition-colors duration-300 placeholder:font-bold placeholder:text-black/40;
+  @apply border-gray caret-primary rounded-lg border px-6 py-4.5 text-sm font-bold tracking-[-0.015625rem] text-black transition-colors duration-300 placeholder:font-bold placeholder:text-black/40;
 }
 
 @utility form-input-focus {
