@@ -28,13 +28,22 @@ export function CheckoutTextField<TName extends Path<CheckoutFormValues>>({
   const hasError = Boolean(error);
 
   return (
-    <label className="form-label">
-      <span className="form-label-row">
-        <span>{label}</span>
-        <span id={errorId} className="form-error-message" aria-live="polite">
+    <div className="flex flex-col gap-2 text-xs">
+      <div className="flex items-center justify-between gap-2 tracking-[-0.013125rem]">
+        <label
+          htmlFor={id}
+          className={cn("font-bold", hasError && "text-error")}
+        >
+          {label}
+        </label>
+        <p
+          id={errorId}
+          className="text-error font-medium"
+          aria-live="assertive"
+        >
           {error || " "}
-        </span>
-      </span>
+        </p>
+      </div>
       <input
         id={id}
         aria-describedby={errorId}
@@ -42,10 +51,10 @@ export function CheckoutTextField<TName extends Path<CheckoutFormValues>>({
         {...inputProps}
         {...register(name, rules)}
         className={cn(
-          "form-input form-input-focus",
-          hasError && "border-error",
+          "caret-primary focus-visible:border-primary rounded-lg border px-6 py-4.5 text-sm font-bold tracking-[-0.015625rem] text-black transition-colors duration-300 placeholder:font-bold placeholder:text-black/40 focus-visible:outline-none",
+          hasError ? "border-error border-2" : "border-gray",
         )}
       />
-    </label>
+    </div>
   );
 }
