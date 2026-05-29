@@ -15,7 +15,7 @@ export function ShippingInfoSection() {
             rules={fieldRules.address}
             type="text"
             placeholder="1137 Williams Avenue"
-            autoComplete="street-address"
+            autoComplete="address-line1"
           />
         </div>
 
