@@ -14,7 +14,11 @@ export function PaymentDetailsSection() {
       <legend className="form-section-title">Payment Details</legend>
 
       <div className="grid gap-x-4 gap-y-6 md:grid-cols-2">
-        <fieldset className="grid gap-x-4 gap-y-4 border-0 p-0 md:col-span-2 md:grid-cols-2">
+        <fieldset
+          className="grid gap-x-4 gap-y-4 border-0 p-0 md:col-span-2 md:grid-cols-2"
+          role="radiogroup"
+          aria-required="true"
+        >
           <legend className="absolute text-xs font-bold tracking-[-0.013125rem]">
             Payment Method
           </legend>
@@ -39,7 +43,7 @@ export function PaymentDetailsSection() {
               }}
               type="text"
               placeholder="238521993"
-              inputMode="numeric"
+              inputMode="decimal"
             />
 
             <CheckoutTextField
@@ -52,7 +56,7 @@ export function PaymentDetailsSection() {
               }}
               type="text"
               placeholder="6891"
-              inputMode="numeric"
+              inputMode="decimal"
             />
           </>
         ) : (
