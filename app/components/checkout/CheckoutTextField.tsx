@@ -51,7 +51,7 @@ export function CheckoutTextField<TName extends Path<CheckoutFormValues>>({
         {...inputProps}
         {...register(name, rules)}
         className={cn(
-          "caret-primary focus-visible:border-primary rounded-lg border px-6 py-4.5 text-sm font-bold tracking-[-0.015625rem] text-black transition-colors duration-300 placeholder:font-bold placeholder:text-black/40 focus-visible:outline-none",
+          "caret-primary focus-visible:border-primary h-14 rounded-lg border px-6 text-sm font-bold tracking-[-0.015625rem] text-black transition-colors duration-300 placeholder:font-bold placeholder:text-black/40 focus-visible:outline-none",
           hasError ? "border-error border-2" : "border-gray",
         )}
       />
