@@ -32,30 +32,32 @@ export default function Page() {
   };
 
   return (
-    <main className="bg-light-gray px-6 py-8 md:px-10 lg:px-20 lg:py-20">
-      <GoBackButton />
+    <main className="bg-light-gray">
+      <div className="general-container pt-20 pb-35">
+        <GoBackButton />
 
-      <section className="mx-auto mt-8 grid max-w-277.5 gap-7.5 lg:grid-cols-12 lg:items-start">
-        <div className="rounded-lg bg-white p-8 md:p-12 lg:col-span-8">
-          <h1 className="text-[2rem] leading-9 font-bold tracking-[0.075rem] uppercase">
-            Checkout
-          </h1>
+        <section className="mx-auto mt-8 grid gap-7.5 lg:grid-cols-12 lg:items-start">
+          <div className="rounded-lg bg-white p-8 md:p-12 lg:col-span-8">
+            <h1 className="text-[2rem] leading-9 font-bold tracking-[0.075rem] uppercase">
+              Checkout
+            </h1>
 
-          <FormProvider {...methods}>
-            <form
-              id="checkout-form"
-              onSubmit={methods.handleSubmit(onSubmit)}
-              className="mt-10 space-y-12"
-            >
-              <BillingDetailsSection />
-              <ShippingInfoSection />
-              <PaymentDetailsSection />
-            </form>
-          </FormProvider>
-        </div>
+            <FormProvider {...methods}>
+              <form
+                id="checkout-form"
+                onSubmit={methods.handleSubmit(onSubmit)}
+                className="mt-10 space-y-12"
+              >
+                <BillingDetailsSection />
+                <ShippingInfoSection />
+                <PaymentDetailsSection />
+              </form>
+            </FormProvider>
+          </div>
 
-        <CheckoutSummary />
-      </section>
+          <CheckoutSummary />
+        </section>
+      </div>
     </main>
   );
 }
