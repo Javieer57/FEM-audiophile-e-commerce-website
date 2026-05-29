@@ -47,6 +47,7 @@ export default function Page() {
                 id="checkout-form"
                 onSubmit={methods.handleSubmit(onSubmit)}
                 className="mt-10 space-y-12"
+                noValidate={true}
               >
                 <BillingDetailsSection />
                 <ShippingInfoSection />
