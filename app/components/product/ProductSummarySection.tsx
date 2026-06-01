@@ -62,7 +62,7 @@ export function ProductSummarySection({
             {formatCurrency(productData.price)}
           </p>
 
-          <ProductActions />
+          <ProductActions productData={productData} />
         </div>
       </div>
     </section>

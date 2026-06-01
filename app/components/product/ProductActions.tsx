@@ -1,12 +1,54 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useCartStore } from "@/app/store/cartStore";
+import type { Products } from "@mytypes/products";
 import { CartMinusIcon, CartPlusIcon } from "@icons/index";
 
-export function ProductActions() {
+type ProductActionsProps = {
+  productData: Products;
+};
+
+export function ProductActions({ productData }: ProductActionsProps) {
+  const productInCart = useCartStore((state) =>
+    state.items.find((item) => item.id === productData.slug),
+  );
+  const productQuantity = productInCart?.quantity;
+  const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+
+  useEffect(() => {
+    setQuantity(productQuantity ?? 1);
+  }, [productQuantity]);
+
+  const handleAddToCart = () => {
+    if (quantity === productQuantity) return;
+
+    if (productInCart) {
+      updateQuantity(productInCart.id, quantity);
+      return;
+    }
+
+    addItem(
+      {
+        id: productData.slug,
+        name: productData.name,
+        unitPrice: productData.price,
+        imagePath: `/images/cart/image-${productData.slug}.jpg`,
+      },
+      quantity,
+    );
+  };
+
   return (
     <div className="flex flex-wrap items-center gap-4">
-      <QuantityInput value={1} onChange={() => {}} />
+      <QuantityInput value={quantity} onChange={setQuantity} />
 
-      <button className="bg-primary hover:bg-accent focus-visible:bg-accent px-8 py-3.5 text-sm font-bold tracking-[0.0625rem] text-white uppercase transition-colors duration-300 focus-visible:outline-none">
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        className="bg-primary hover:bg-accent focus-visible:bg-accent px-8 py-3.5 text-sm font-bold tracking-[0.0625rem] text-white uppercase transition-colors duration-300 focus-visible:outline-none"
+      >
         Add to cart
       </button>
     </div>
