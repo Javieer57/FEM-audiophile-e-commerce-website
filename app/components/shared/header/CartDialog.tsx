@@ -7,19 +7,24 @@ import {
 } from "@headlessui/react";
 import { formatCurrency } from "@utils/formatCurrency";
 import { CartItem } from "./CartItem";
+import {
+  selectCartItems,
+  selectCartSubtotal,
+  selectCartTotalQuantity,
+  useCartStore,
+} from "@/app/store/cartStore";
 
 export type CartProduct = {
   id: string;
   name: string;
   unitPrice: number;
   quantity: number;
+  imagePath: string;
 };
 
 type CartDialogProps = {
   open: boolean;
   onClose: (value: boolean) => void;
-  products: CartProduct[];
-  onRemoveAll?: () => void;
 };
 
 function EmptyCart() {
@@ -27,19 +32,21 @@ function EmptyCart() {
 }
 
 function CartContents({
-  products,
   totalPrice,
   onClose,
 }: {
-  products: CartProduct[];
   totalPrice: number;
   onClose: (value: boolean) => void;
 }) {
+  const cartProducts = useCartStore(selectCartItems);
+
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+
   return (
     <>
       <ul className="space-y-6">
-        {products.map((item) => (
-          <CartItem key={item.id} {...item} />
+        {cartProducts.map((item) => (
+          <CartItem key={item.id} {...item} onQuantityChange={updateQuantity} />
         ))}
       </ul>
 
@@ -59,17 +66,11 @@ function CartContents({
   );
 }
 
-export function CartDialog({
-  open,
-  onClose,
-  products,
-  onRemoveAll,
-}: CartDialogProps) {
-  const totalQuantity = products.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = products.reduce(
-    (sum, item) => sum + item.unitPrice * item.quantity,
-    0,
-  );
+export function CartDialog({ open, onClose }: CartDialogProps) {
+  const clearCart = useCartStore((state) => state.clearCart);
+
+  const totalQuantity = useCartStore(selectCartTotalQuantity);
+  const totalPrice = useCartStore(selectCartSubtotal);
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-40" transition>
@@ -91,7 +92,7 @@ export function CartDialog({
               {totalQuantity > 0 && (
                 <button
                   type="button"
-                  onClick={onRemoveAll}
+                  onClick={clearCart}
                   className="hover:text-primary focus-visible:text-primary font-medium underline opacity-50 transition-all duration-300 focus-visible:opacity-100 focus-visible:outline-none"
                 >
                   Remove all
@@ -102,11 +103,7 @@ export function CartDialog({
             {totalQuantity === 0 ? (
               <EmptyCart />
             ) : (
-              <CartContents
-                products={products}
-                totalPrice={totalPrice}
-                onClose={onClose}
-              />
+              <CartContents totalPrice={totalPrice} onClose={onClose} />
             )}
           </DialogPanel>
         </div>
