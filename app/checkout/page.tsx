@@ -7,6 +7,7 @@ import { ShippingInfoSection } from "@/app/components/checkout/ShippingInfoSecti
 import { type CheckoutFormValues } from "@/app/types/checkoutForm";
 import { GoBackButton } from "@/app/components/shared/GoBackButton";
 import { FormProvider, useForm } from "react-hook-form";
+import { normalizeCheckoutData } from "@utils/normalizeCheckoutData";
 
 export default function Page() {
   const methods = useForm<CheckoutFormValues>({
@@ -28,7 +29,9 @@ export default function Page() {
   });
 
   const onSubmit = (data: CheckoutFormValues) => {
-    console.log(data);
+    const normalizedData = normalizeCheckoutData(data);
+
+    console.log(normalizedData);
   };
 
   return (
