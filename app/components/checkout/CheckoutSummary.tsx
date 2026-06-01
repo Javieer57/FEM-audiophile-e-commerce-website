@@ -1,10 +1,11 @@
-import { cn } from "@/app/utils/cn";
-import { formatCurrency } from "@/app/utils/formatCurrency";
+import { cn } from "@utils/cn";
+import { formatCurrency } from "@utils/formatCurrency";
 
 type SummaryItem = {
   name: string;
   unitPrice: number;
   quantity: number;
+  img: string;
 };
 
 type SummaryTotal = {
@@ -14,9 +15,24 @@ type SummaryTotal = {
 };
 
 const checkoutSummaryItems: SummaryItem[] = [
-  { name: "XX99 MK II", unitPrice: 2999, quantity: 1 },
-  { name: "XX59", unitPrice: 899, quantity: 2 },
-  { name: "YX1", unitPrice: 599, quantity: 1 },
+  {
+    name: "XX99 MK II",
+    unitPrice: 2999,
+    quantity: 1,
+    img: "/images/cart/image-xx99-mark-two-headphones.jpg",
+  },
+  {
+    name: "XX59",
+    unitPrice: 899,
+    quantity: 2,
+    img: "/images/cart/image-xx59-headphones.jpg",
+  },
+  {
+    name: "YX1",
+    unitPrice: 599,
+    quantity: 1,
+    img: "/images/cart/image-yx1-earphones.jpg",
+  },
 ];
 
 const checkoutSummaryTotals: SummaryTotal[] = [
@@ -26,19 +42,19 @@ const checkoutSummaryTotals: SummaryTotal[] = [
   { label: "Grand Total", value: 5446, highlight: true },
 ];
 
-function SummaryItemRow({ name, quantity, unitPrice }: SummaryItem) {
+function SummaryItemRow({ name, quantity, unitPrice, img }: SummaryItem) {
   return (
     <div className="flex items-center gap-4">
-      <div className="bg-light-gray h-16 w-16 rounded-lg" />
+      <div className="bg-light-gray h-16 w-16 overflow-hidden rounded-lg">
+        <img src={img} alt={name} className="h-full w-full object-cover" />
+      </div>
       <div className="mr-auto">
-        <p className="leading-6.25 font-bold">{name}</p>
-        <p className="text-sm leading-6.25 font-bold text-black/50">
+        <p className="font-bold">{name}</p>
+        <p className="text-sm font-bold text-black/50">
           {formatCurrency(unitPrice)}
         </p>
       </div>
-      <p className="text-sm leading-6.25 font-bold text-black/50">
-        x{quantity}
-      </p>
+      <p className="font-bold text-black/50">x{quantity}</p>
     </div>
   );
 }
@@ -53,13 +69,8 @@ function SummaryTotalRow({ label, value, highlight }: SummaryTotal) {
         isHighlighted && "mt-4",
       )}
     >
-      <p className="leading-6.25 text-black/50 uppercase">{label}</p>
-      <p
-        className={cn(
-          "text-lg font-bold uppercase",
-          isHighlighted && "text-primary",
-        )}
-      >
+      <p className="text-black/50 uppercase">{label}</p>
+      <p className={cn("text-lg font-bold", isHighlighted && "text-primary")}>
         {formatCurrency(value)}
       </p>
     </div>
@@ -68,16 +79,18 @@ function SummaryTotalRow({ label, value, highlight }: SummaryTotal) {
 
 export function CheckoutSummary() {
   return (
-    <aside className="rounded-lg bg-white p-8 lg:col-span-4">
-      <h2 className="text-lg font-bold tracking-[1.29px] uppercase">Summary</h2>
+    <aside className="grid gap-8 rounded-lg bg-white p-8 lg:col-span-4">
+      <h2 className="text-lg font-bold tracking-[0.08rem] uppercase">
+        Summary
+      </h2>
 
-      <div className="mt-8 space-y-6">
+      <div className="space-y-6">
         {checkoutSummaryItems.map((item) => (
           <SummaryItemRow key={item.name} {...item} />
         ))}
       </div>
 
-      <div className="mt-8 space-y-2">
+      <div className="space-y-2">
         {checkoutSummaryTotals.map((total) => (
           <SummaryTotalRow key={total.label} {...total} />
         ))}
@@ -86,9 +99,9 @@ export function CheckoutSummary() {
       <button
         type="submit"
         form="checkout-form"
-        className="bg-primary mt-8 h-12 w-full text-sm font-bold tracking-[1px] text-white uppercase"
+        className="bg-primary hover:bg-accent focus-visible:bg-accent w-full py-3.5 text-sm font-bold tracking-[0.0625rem] text-white uppercase transition-colors focus-visible:outline-none"
       >
-        Continue
+        Continue & pay
       </button>
     </aside>
   );
