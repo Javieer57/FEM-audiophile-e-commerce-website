@@ -1,12 +1,13 @@
+"use client";
+
 import { cn } from "@utils/cn";
 import { formatCurrency } from "@utils/formatCurrency";
-
-type SummaryItem = {
-  name: string;
-  unitPrice: number;
-  quantity: number;
-  img: string;
-};
+import {
+  selectCartItems,
+  selectCartSubtotal,
+  selectCartTotalQuantity,
+  useCartStore,
+} from "@/app/store/cartStore";
 
 type SummaryTotal = {
   label: string;
@@ -14,39 +15,25 @@ type SummaryTotal = {
   highlight?: boolean;
 };
 
-const checkoutSummaryItems: SummaryItem[] = [
-  {
-    name: "XX99 MK II",
-    unitPrice: 2999,
-    quantity: 1,
-    img: "/images/cart/image-xx99-mark-two-headphones.jpg",
-  },
-  {
-    name: "XX59",
-    unitPrice: 899,
-    quantity: 2,
-    img: "/images/cart/image-xx59-headphones.jpg",
-  },
-  {
-    name: "YX1",
-    unitPrice: 599,
-    quantity: 1,
-    img: "/images/cart/image-yx1-earphones.jpg",
-  },
-];
-
-const checkoutSummaryTotals: SummaryTotal[] = [
-  { label: "Total", value: 5396 },
-  { label: "Shipping", value: 50 },
-  { label: "VAT (Included)", value: 1079 },
-  { label: "Grand Total", value: 5446, highlight: true },
-];
-
-function SummaryItemRow({ name, quantity, unitPrice, img }: SummaryItem) {
+function SummaryItemRow({
+  name,
+  quantity,
+  unitPrice,
+  imagePath,
+}: {
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  imagePath: string;
+}) {
   return (
     <div className="flex items-center gap-4">
       <div className="bg-light-gray h-16 w-16 overflow-hidden rounded-lg">
-        <img src={img} alt={name} className="h-full w-full object-cover" />
+        <img
+          src={imagePath}
+          alt={name}
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="mr-auto">
         <p className="font-bold">{name}</p>
@@ -78,17 +65,35 @@ function SummaryTotalRow({ label, value, highlight }: SummaryTotal) {
 }
 
 export function CheckoutSummary() {
+  const checkoutItems = useCartStore(selectCartItems);
+  const subtotal = useCartStore(selectCartSubtotal);
+  const totalQuantity = useCartStore(selectCartTotalQuantity);
+  const shipping = subtotal > 0 ? 50 : 0;
+  const vat = Math.floor(subtotal * 0.2);
+  const grandTotal = subtotal + shipping;
+
+  const checkoutSummaryTotals: SummaryTotal[] = [
+    { label: "Total", value: subtotal },
+    { label: "Shipping", value: shipping },
+    { label: "VAT (Included)", value: vat },
+    { label: "Grand Total", value: grandTotal, highlight: true },
+  ];
+
   return (
     <aside className="grid gap-8 rounded-lg bg-white p-8 lg:col-span-4">
       <h2 className="text-lg font-bold tracking-[0.08rem] uppercase">
-        Summary
+        Summary ({totalQuantity})
       </h2>
 
-      <div className="space-y-6">
-        {checkoutSummaryItems.map((item) => (
-          <SummaryItemRow key={item.name} {...item} />
-        ))}
-      </div>
+      {checkoutItems.length === 0 ? (
+        <p className="text-medium-gray">Your cart is empty.</p>
+      ) : (
+        <div className="space-y-6">
+          {checkoutItems.map((item) => (
+            <SummaryItemRow key={item.id} {...item} />
+          ))}
+        </div>
+      )}
 
       <div className="space-y-2">
         {checkoutSummaryTotals.map((total) => (
@@ -99,7 +104,8 @@ export function CheckoutSummary() {
       <button
         type="submit"
         form="checkout-form"
-        className="bg-primary hover:bg-accent focus-visible:bg-accent w-full py-3.5 text-sm font-bold tracking-[0.0625rem] text-white uppercase transition-colors focus-visible:outline-none"
+        disabled={checkoutItems.length === 0}
+        className="bg-primary hover:bg-accent focus-visible:bg-accent disabled:bg-medium-gray w-full py-3.5 text-sm font-bold tracking-[0.0625rem] text-white uppercase transition-colors focus-visible:outline-none disabled:cursor-not-allowed"
       >
         Continue & pay
       </button>
