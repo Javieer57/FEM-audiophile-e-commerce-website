@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 
 type GoBackButtonProps = {
-  fallbackHref: string;
+  fallbackHref?: string;
 };
 
-export function GoBackButton({ fallbackHref }: GoBackButtonProps) {
+export function GoBackButton({ fallbackHref = "/" }: GoBackButtonProps) {
   const router = useRouter();
 
   const handleClick = () => {
@@ -22,7 +22,7 @@ export function GoBackButton({ fallbackHref }: GoBackButtonProps) {
     <button
       type="button"
       onClick={handleClick}
-      className="font-medium opacity-50"
+      className="hover:text-primary focus-visible:text-primary font-medium opacity-50 transition-all duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none"
     >
       Go Back
     </button>
