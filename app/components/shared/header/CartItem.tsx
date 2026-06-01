@@ -21,11 +21,11 @@ export function CartItem({
   return (
     <li className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-4">
-        <div>
+        <div className="bg-light-gray h-16 w-16 shrink-0 overflow-hidden rounded-lg">
           <img
             src={imagePath}
             alt={name}
-            className="bg-light-gray h-16 w-16 rounded-lg object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
         <div>

@@ -28,7 +28,7 @@ function SummaryItemRow({
 }) {
   return (
     <div className="flex items-center gap-4">
-      <div className="bg-light-gray h-16 w-16 overflow-hidden rounded-lg">
+      <div className="bg-light-gray h-16 w-16 shrink-0 overflow-hidden rounded-lg">
         <img
           src={imagePath}
           alt={name}
