@@ -13,17 +13,23 @@ export function SummaryItemRow({
       <div className="bg-light-gray h-16 w-16 shrink-0 overflow-hidden rounded-lg">
         <img
           src={imagePath}
-          alt={name}
+          alt=""
           className="h-full w-full object-cover"
+          aria-hidden="true"
         />
       </div>
       <div className="mr-auto">
         <p className="font-bold">{name}</p>
         <p className="text-sm font-bold text-black/50">
+          <span className="sr-only">Unit Price:</span>
           {formatCurrency(unitPrice)}
         </p>
       </div>
-      <p className="font-bold text-black/50">x{quantity}</p>
+      <p className="font-bold text-black/50">
+        <span aria-hidden="true">x</span>
+        <span className="sr-only">Quantity:</span>
+        {quantity}
+      </p>
     </div>
   );
 }

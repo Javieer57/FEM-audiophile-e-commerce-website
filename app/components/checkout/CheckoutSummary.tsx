@@ -16,11 +16,13 @@ export function CheckoutSummary() {
       {checkoutItems.length === 0 ? (
         <p className="text-medium-gray">Your cart is empty.</p>
       ) : (
-        <div className="space-y-6">
+        <ul className="space-y-6">
           {checkoutItems.map((item) => (
-            <SummaryItemRow key={item.id} {...item} />
+            <li key={item.id}>
+              <SummaryItemRow {...item} />
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
       <CheckoutSummaryTotals />
