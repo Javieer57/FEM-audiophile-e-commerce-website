@@ -1,26 +1,11 @@
-import Link from "next/link";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { formatCurrency } from "@utils/formatCurrency";
-import { CartItem } from "./CartItem";
-import {
-  selectCartItems,
-  selectCartSubtotal,
-  selectCartTotalQuantity,
-  useCartStore,
-} from "@/app/store/cartStore";
-
-export type CartProduct = {
-  id: string;
-  name: string;
-  unitPrice: number;
-  quantity: number;
-  imagePath: string;
-};
+import { selectCartTotalQuantity, useCartStore } from "@store/cartStore";
+import { CartContents } from "./CartContents";
 
 type CartDialogProps = {
   open: boolean;
@@ -31,46 +16,10 @@ function EmptyCart() {
   return <p className="text-medium-gray">Your cart is empty.</p>;
 }
 
-function CartContents({
-  totalPrice,
-  onClose,
-}: {
-  totalPrice: number;
-  onClose: (value: boolean) => void;
-}) {
-  const cartProducts = useCartStore(selectCartItems);
-
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
-
-  return (
-    <>
-      <ul className="space-y-6">
-        {cartProducts.map((item) => (
-          <CartItem key={item.id} {...item} onQuantityChange={updateQuantity} />
-        ))}
-      </ul>
-
-      <div className="mt-8 mb-6 flex items-center justify-between">
-        <p className="font-medium uppercase opacity-50">Total</p>
-        <p className="text-lg font-bold">{formatCurrency(totalPrice)}</p>
-      </div>
-
-      <Link
-        href="/checkout"
-        className="bg-primary hover:bg-accent focus-visible:bg-accent block w-full px-8 py-4 text-center text-sm font-bold tracking-[0.06rem] text-white uppercase transition-colors duration-300 focus-visible:outline-none"
-        onClick={() => onClose(false)}
-      >
-        Checkout
-      </Link>
-    </>
-  );
-}
-
 export function CartDialog({ open, onClose }: CartDialogProps) {
   const clearCart = useCartStore((state) => state.clearCart);
-
   const totalQuantity = useCartStore(selectCartTotalQuantity);
-  const totalPrice = useCartStore(selectCartSubtotal);
+  const haveProductsInCart = totalQuantity > 0;
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-40" transition>
@@ -89,7 +38,7 @@ export function CartDialog({ open, onClose }: CartDialogProps) {
               <DialogTitle className="text-lg font-bold tracking-[0.08rem] uppercase">
                 Cart ({totalQuantity})
               </DialogTitle>
-              {totalQuantity > 0 && (
+              {haveProductsInCart && (
                 <button
                   type="button"
                   onClick={clearCart}
@@ -100,10 +49,10 @@ export function CartDialog({ open, onClose }: CartDialogProps) {
               )}
             </div>
 
-            {totalQuantity === 0 ? (
-              <EmptyCart />
+            {haveProductsInCart ? (
+              <CartContents onClose={onClose} />
             ) : (
-              <CartContents totalPrice={totalPrice} onClose={onClose} />
+              <EmptyCart />
             )}
           </DialogPanel>
         </div>
