@@ -37,21 +37,21 @@ export const useCartStore = create<CartState>()(
             (cartItem) => cartItem.id === item.id,
           );
 
-          if (existingItem) {
+          if (!existingItem) {
             return {
-              items: state.items.map((cartItem) =>
-                cartItem.id === item.id
-                  ? {
-                      ...cartItem,
-                      quantity: clampQuantity(cartItem.quantity + nextQuantity),
-                    }
-                  : cartItem,
-              ),
+              items: [...state.items, { ...item, quantity: nextQuantity }],
             };
           }
 
           return {
-            items: [...state.items, { ...item, quantity: nextQuantity }],
+            items: state.items.map((cartItem) =>
+              cartItem.id === item.id
+                ? {
+                    ...cartItem,
+                    quantity: clampQuantity(cartItem.quantity + nextQuantity),
+                  }
+                : cartItem,
+            ),
           };
         });
       },
@@ -100,3 +100,9 @@ export const selectCartSubtotal = (state: CartState) =>
     (total, item) => total + item.unitPrice * item.quantity,
     0,
   );
+
+export const selectCartItemQuantityById =
+  (id: string) => (state: CartState) => {
+    const item = state.items.find((cartItem) => cartItem.id === id);
+    return item?.quantity;
+  };
