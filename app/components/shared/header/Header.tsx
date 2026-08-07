@@ -53,9 +53,9 @@ export function Header() {
     <>
       <header
         className={cn(
-          "w-full text-white transition-colors duration-300",
+          "z-50 w-full text-white transition-colors duration-300",
           isTransparentHeader ? "bg-transparent" : "bg-black",
-          isHomePage && "absolute top-0 z-50",
+          isHomePage ? "absolute top-0 z-50" : "relative",
         )}
       >
         <div className="general-container">
