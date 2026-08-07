@@ -43,7 +43,7 @@ export default function Page() {
         <GoBackButton />
 
         <section className="mx-auto mt-8 grid gap-7.5 lg:grid-cols-12 lg:items-start">
-          <div className="rounded-lg bg-white p-8 md:p-12 lg:col-span-8">
+          <div className="rounded-lg bg-white p-8 lg:col-span-8 lg:p-12">
             <h1 className="text-[2rem] leading-9 font-bold tracking-[0.075rem] uppercase">
               Checkout
             </h1>
