@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartIcon, HamburgerMenuIcon } from "@icons/index";
-import { CartDialog, type CartProduct } from "./CartDialog";
+import { CartDialog } from "./CartDialog";
 import { MobileMenuDialog } from "./MobileMenuDialog";
 import { categories } from "../../categories";
 import { cn } from "@utils/cn";
@@ -16,26 +16,11 @@ const headerNavLinks = [
   { href: "/earphones", label: "Earphones" },
 ];
 
-const mockCartProducts: CartProduct[] = [
-  {
-    id: "xx99-mark-two-headphones",
-    name: "XX99 MK II",
-    unitPrice: 2999,
-    quantity: 1,
-  },
-  { id: "xx59-headphones", name: "XX59", unitPrice: 899, quantity: 2 },
-  { id: "yx1-earphones", name: "YX1", unitPrice: 599, quantity: 1 },
-];
-
-// const mockCartProducts: CartProduct[] = [];
-
 export function Header() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartProducts, setCartProducts] =
-    useState<CartProduct[]>(mockCartProducts);
 
   const isOverlayOpen = isMenuOpen || isCartOpen;
   const isTransparentHeader = isHomePage && !isOverlayOpen;
@@ -137,12 +122,7 @@ export function Header() {
         categories={categories}
       />
 
-      <CartDialog
-        open={isCartOpen}
-        onClose={setIsCartOpen}
-        products={cartProducts}
-        onRemoveAll={() => setCartProducts([])}
-      />
+      <CartDialog open={isCartOpen} onClose={setIsCartOpen} />
     </>
   );
 }

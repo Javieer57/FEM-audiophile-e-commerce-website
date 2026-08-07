@@ -6,17 +6,26 @@ type CartItemProps = {
   name: string;
   unitPrice: number;
   quantity: number;
+  imagePath: string;
+  onQuantityChange: (id: string, quantity: number) => void;
 };
 
-export function CartItem({ id, name, unitPrice, quantity }: CartItemProps) {
+export function CartItem({
+  id,
+  name,
+  unitPrice,
+  quantity,
+  imagePath,
+  onQuantityChange,
+}: CartItemProps) {
   return (
     <li className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-4">
-        <div>
+        <div className="bg-light-gray h-16 w-16 shrink-0 overflow-hidden rounded-lg">
           <img
-            src={`/images/cart/image-${id}.jpg`}
+            src={imagePath}
             alt={name}
-            className="bg-light-gray h-16 w-16 rounded-lg object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
         <div>
@@ -26,7 +35,10 @@ export function CartItem({ id, name, unitPrice, quantity }: CartItemProps) {
           </p>
         </div>
       </div>
-      <QuantityInput value={quantity} onChange={() => {}} />
+      <QuantityInput
+        value={quantity}
+        onChange={(value) => onQuantityChange(id, value)}
+      />
     </li>
   );
 }

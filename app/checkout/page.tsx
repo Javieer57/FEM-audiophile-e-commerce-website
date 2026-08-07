@@ -8,8 +8,11 @@ import { type CheckoutFormValues } from "@/app/types/checkoutForm";
 import { GoBackButton } from "@/app/components/shared/GoBackButton";
 import { FormProvider, useForm } from "react-hook-form";
 import { normalizeCheckoutData } from "@utils/normalizeCheckoutData";
+import { useCartStore } from "@/app/store/cartStore";
 
 export default function Page() {
+  const cartItems = useCartStore((state) => state.items);
+
   const methods = useForm<CheckoutFormValues>({
     mode: "onBlur",
     reValidateMode: "onChange",
@@ -31,7 +34,7 @@ export default function Page() {
   const onSubmit = (data: CheckoutFormValues) => {
     const normalizedData = normalizeCheckoutData(data);
 
-    console.log(normalizedData);
+    console.log({ checkout: normalizedData, cartItems });
   };
 
   return (
@@ -44,6 +47,12 @@ export default function Page() {
             <h1 className="text-[2rem] leading-9 font-bold tracking-[0.075rem] uppercase">
               Checkout
             </h1>
+
+            {cartItems.length === 0 && (
+              <p className="bg-light-gray text-medium-gray mt-6 rounded-lg px-4 py-3">
+                Your cart is empty. Add products before continuing to checkout.
+              </p>
+            )}
 
             <FormProvider {...methods}>
               <form
