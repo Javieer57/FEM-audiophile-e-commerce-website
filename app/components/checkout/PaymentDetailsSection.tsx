@@ -23,7 +23,7 @@ export function PaymentDetailsSection() {
             Payment Method
           </legend>
 
-          <div></div>
+          <div className="max-md:mb-4"></div>
 
           <div className="space-y-4">
             <PaymentMethodOption value="e-money" label="e-Money" />
